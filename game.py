@@ -26,6 +26,10 @@ class Game:
     def get_map(self):
         return self.board.get_state()
 
+    def apply_position(self, p):
+        if self.board.is_on_board(p):
+            self.board.move(self.player, p)
+
     def turn_right(self):
         self.player.direction = (self.player.direction + 1) % 4
         self.board.redraw(self.player)
@@ -33,10 +37,6 @@ class Game:
     def turn_left(self):
         self.player.direction = (self.player.direction - 1) % 4
         self.board.redraw(self.player)
-
-    def apply_position(self, p):
-        if self.board.is_on_board(p):
-            self.board.move(self.player, p)
 
     def forward(self):
         self.apply_position([
